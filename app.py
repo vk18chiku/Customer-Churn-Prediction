@@ -17,56 +17,154 @@ st.set_page_config(
 # Custom CSS
 st.markdown("""
     <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    
+    * {
+        font-family: 'Inter', sans-serif;
+    }
+    
     .main {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(to bottom right, #f8f9fa, #e9ecef);
     }
+    
     .stApp {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(to bottom right, #f8f9fa, #e9ecef);
     }
+    
     .css-1d391kg {
-        background-color: rgba(255, 255, 255, 0.05);
+        background: white;
+        border-radius: 16px;
+        padding: 20px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     }
+    
     h1 {
-        color: #ffffff;
+        color: #1a1a1a;
         text-align: center;
-        font-size: 3rem;
+        font-size: 2.5rem;
         font-weight: 700;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        margin-bottom: 0;
+        margin-bottom: 0.5rem;
+        letter-spacing: -0.5px;
     }
+    
     .subtitle {
         text-align: center;
-        color: #e0e0e0;
-        font-size: 1.2rem;
-        margin-bottom: 2rem;
+        color: #6c757d;
+        font-size: 1rem;
+        margin-bottom: 2.5rem;
+        font-weight: 400;
     }
+    
     .stButton>button {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
+        background: #4F46E5;
+        color: white !important;
         border: none;
-        padding: 0.75rem 2rem;
+        padding: 0.875rem 2rem;
+        font-size: 1rem;
+        font-weight: 500;
+        border-radius: 12px;
+        width: 100%;
+        transition: all 0.2s ease;
+        margin-top: 1.5rem;
+    }
+    
+    .stButton>button:hover {
+        background: #4338CA;
+        color: white !important;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+    }
+    
+    .stButton>button p {
+        color: white !important;
+    }
+    
+    .prediction-box {
+        background: white;
+        padding: 2rem;
+        border-radius: 16px;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        margin-top: 2rem;
+        border: 1px solid #e9ecef;
+    }
+    
+    .stSelectbox label, .stSlider label, .stNumberInput label {
+        color: #374151;
+        font-weight: 500;
+        font-size: 0.9rem;
+    }
+    
+    div[data-baseweb="select"] > div {
+        border-radius: 10px;
+        border: 1px solid #e5e7eb;
+    }
+    
+    .stMarkdown h3 {
+        color: #1a1a1a;
+        font-weight: 600;
+        font-size: 1.3rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    [data-testid="stSidebar"] {
+        background: white;
+        border-right: 1px solid #e9ecef;
+    }
+    
+    [data-testid="stSidebar"] h2 {
+        color: #1a1a1a;
         font-size: 1.1rem;
         font-weight: 600;
-        border-radius: 10px;
-        width: 100%;
-        transition: all 0.3s ease;
     }
-    .stButton>button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    
+    [data-testid="stSidebar"] .stMarkdown {
+        color: #374151;
+        font-size: 0.9rem;
+        line-height: 1.6;
     }
-    .prediction-box {
-        background: rgba(255, 255, 255, 0.95);
-        padding: 2rem;
-        border-radius: 15px;
-        box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-        margin-top: 2rem;
+    
+    [data-testid="stSidebar"] .stMarkdown p {
+        color: #374151;
     }
-    .metric-container {
-        background: rgba(255, 255, 255, 0.1);
-        padding: 1rem;
-        border-radius: 10px;
-        backdrop-filter: blur(10px);
+    
+    [data-testid="stSidebar"] .stMarkdown ul {
+        color: #374151;
+    }
+    
+    [data-testid="stSidebar"] .stMarkdown li {
+        color: #374151;
+    }
+    
+    [data-testid="stSidebar"] button {
+        color: #1a1a1a !important;
+    }
+    
+    [data-testid="stSidebar"] button svg {
+        fill: #1a1a1a !important;
+    }
+    
+    [data-testid="collapsedControl"] {
+        color: #1a1a1a !important;
+    }
+    
+    div[data-testid="stMarkdownContainer"] {
+        color: #374151;
+    }
+    
+    .stProgress > div > div {
+        background: #4F46E5;
+    }
+    
+    [data-testid="stMetricValue"] {
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: #1a1a1a;
+    }
+    
+    [data-testid="stMetricLabel"] {
+        font-size: 0.85rem;
+        color: #6c757d;
+        font-weight: 500;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -211,7 +309,7 @@ with col2:
 st.markdown("<br><br>", unsafe_allow_html=True)
 st.markdown("---")
 st.markdown("""
-<div style='text-align: center; color: #e0e0e0;'>
-    <p>Powered by TensorFlow & Streamlit | AI-Driven Customer Analytics</p>
+<div style='text-align: center; color: #6c757d; font-size: 0.9rem;'>
+    <p style='margin: 0; padding: 1rem 0;'>Powered by TensorFlow & Streamlit | AI-Driven Customer Analytics</p>
 </div>
 """, unsafe_allow_html=True)
